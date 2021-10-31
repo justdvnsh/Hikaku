@@ -1,0 +1,2 @@
+rootProject.name = "Hikaku"
+include ':app'
