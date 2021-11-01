@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="divyansh.tech.hikaku.home.screens.compare.CompareViewModel.BUTTONS" />
+
+        <variable
+            name="viewmodel"
+            type="divyansh.tech.hikaku.home.screens.compare.CompareViewModel"
+            />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="add first document"
+                android:id="@+id/first_document"
+                android:onClick="@{() -> viewmodel.onClick(BUTTONS.FIRST)}"
+                />
+
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="add second document"
+                android:id="@+id/second_document"
+                android:onClick="@{() -> viewmodel.onClick(BUTTONS.SECOND)}"
+                />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

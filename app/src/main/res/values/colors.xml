@@ -1,10 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#00AA67</color>
+    <color name="colorPrimaryDark">#00AA67</color>
+    <color name="colorPrimaryNight">#00643d</color>
+
+    <color name="colorAccent">#00AA67</color>
+    <color name="gray">#ffdfdfdf</color>
+    <color name="Black">#323232</color>
+    <color name="taxonomy">#00AA67</color>
+    <color name="taxonomyText">#ffffff</color>
+    <color name="secondary_background">#EAEAEB</color>
+
+    <!--  Don't delete it as some of the previous fields are dependent on it-->
+    <!-- New Colors -->
+    <color name="darkGreyHeading">#40424E</color>
+    <color name="lightGreyDescription">#93949A</color>
+    <color name="defaultThemeBackground">#F0F3F5</color>
+    <color name="lightGreyNumber">#660F2B3C</color>
+    <color name="geeksPrimary">#2F8D46</color>
+    <color name="geeksPrimaryOpacity20">#332F8D46</color>
+    <color name="logoText">#0F2B3C</color>
+    <color name="titleColor">#0F2B3C</color>
+    <color name="likeBorder">#E2367B</color>
+    <color name="likeBackground">#fff5f9</color>
+
+    <!-- New Color Palette -->
+
+
+    <color name="gfgPrimary">#2f8d46</color>
+    <color name="primary10">#d5e8da</color>
+    <color name="primary05">#f6fef8</color>
+    <color name="gfgSecondary">#0f2b3c</color>
+    <color name="secondary10">#f2faff</color>
+    <color name="articleTitle">#40424E</color>
+    <color name="bodyTextAndParagraph">#93949a</color>
+    <color name="tagsDesignBorder">#ddddde</color>
+    <color name="mainBackgroundAndBlockBackground">#f0f3f5</color>
+    <color name="gfgColorAccent">#FF6464</color>
+    <color name="gfgWhite">#ffffff</color>
+    <color name="gfgHeaderLightGrey">#F8F8F9</color>
+    <color name="gfgLightBorder">#C7C7C8</color>
+    <color name="gfgLightGreyCut">#F1F3F4</color>
+    <color name="gfgLightText">#99262932</color>
+    <color name="gfgWrong">#FC535E</color>
+    <color name="gfgInstructionTextColor">#46474A</color>
+    <color name="gfgRippleEffect">#b7bfc4</color>
+    <color name="gfgLightSecondary">#B30F2B3C</color>
+    <color name="gfgSecondary_80">#CC0F2B3C</color>
+    <color name="gfgSecondary_40">#660F2B3C</color>
+    <color name="gfgSecondary_70">#B30F2B3C</color>
+    <color name="welcomeBackground">#EFF5F9</color>
+
 </resources>

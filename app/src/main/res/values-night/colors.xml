@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- primary Color -->
+    <color name="colorPrimary">#A5D6A7</color>
+    <color name="colorPrimaryDark">#A5D6A7</color>
+    <color name="colorPrimaryNight">#00643d</color>
+    <color name="secondary_background">#212121</color>
+    <!-- Article Fragment Colors -->
+
+    <color name="defaultThemeBackground">#000000</color>
+
+
+    <color name="gfgPrimary">#2f8d46</color>
+    <color name="primary10">#d5e8da</color>
+    <color name="primary05">#1c1e1d</color>
+    <color name="gfgSecondary">#ffffff</color>
+    <color name="secondary10">#1e201f</color>
+    <color name="articleTitle">#e7e7e7</color>
+    <color name="bodyTextAndParagraph">#bebebe</color>
+    <color name="tagsDesignBorder">#c7c7c8</color>
+    <color name="mainBackgroundAndBlockBackground">#18181a</color>
+    <color name="gfgLightGreyCut">#18181a</color>
+    <color name="gfgHeaderLightGrey">#18181a</color>
+    <color name="gfgInstructionTextColor">#CBCBCC</color>
+    <color name="gfgLightText">#99FFFFFF</color>
+    <color name="gfgLightSecondary">#B3FFFFFF</color>
+    <color name="gfgSecondary_80">#CCFFFFFF</color>
+    <color name="gfgSecondary_40">#66FFFFFF</color>
+    <color name="gfgSecondary_70">#B3FFFFFF</color>
+
+    <color name="gfgWhite">#0f1011</color>
+    <color name="gfgLightBorder">#C7C7C8</color>
+    <color name="gfgColorAccent">#FF6464</color>
+</resources>
