@@ -13,7 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <WebView
+            android:id="@+id/webView"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonsLayout"
+            />
+
         <LinearLayout
+            android:id="@+id/buttonsLayout"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:orientation="vertical"

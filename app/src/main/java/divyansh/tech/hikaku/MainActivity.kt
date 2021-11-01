@@ -2,6 +2,7 @@ package divyansh.tech.hikaku
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.app.ActivityCompat
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
