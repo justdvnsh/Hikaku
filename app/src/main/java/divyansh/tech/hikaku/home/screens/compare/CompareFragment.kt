@@ -113,8 +113,8 @@ class CompareFragment: Fragment() {
         val src: String? = uri?.path
         src?.let {
             try {
-                val pdfFile = File()
-                val file = FileProvider.getUriForFile(requireContext(), BuildConfig.APPLICATION_ID + ".provider", pdfFile)
+//                val pdfFile = File()
+//                val file = FileProvider.getUriForFile(requireContext(), BuildConfig.APPLICATION_ID + ".provider", pdfFile)
                 var parsedText = ""
                 val reader = PdfReader("file:///$it")
                 val n: Int = reader.numberOfPages
