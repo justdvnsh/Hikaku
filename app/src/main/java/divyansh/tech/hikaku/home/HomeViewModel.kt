@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import divyansh.tech.hikaku.common.CommonViewModel
 import divyansh.tech.hikaku.common.Event
 import divyansh.tech.hikaku.common.Result
+import divyansh.tech.hikaku.home.datamodels.PDF
 import divyansh.tech.hikaku.home.source.HomeDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,7 +19,7 @@ class HomeViewModel @Inject constructor(
     private val repo: HomeDataSource
 ): CommonViewModel() {
 
-    private val _pdfLiveData = MutableLiveData<ArrayList<File>>()
+    private val _pdfLiveData = MutableLiveData<ArrayList<PDF>>()
     val pdfLiveData get() = _pdfLiveData
 
     fun onFabClick() {
@@ -32,7 +33,13 @@ class HomeViewModel @Inject constructor(
 
     private fun getPDF() = viewModelScope.launch {
         val pdfs = repo.getAllPDF()
-        if (pdfs is Result.Success) _pdfLiveData.postValue(pdfs.data as ArrayList<File>)
+        if (pdfs is Result.Success) _pdfLiveData.postValue(pdfs.data as ArrayList<PDF>)
         else if (pdfs is Result.Error) Timber.e(pdfs.exception.toString())
+    }
+
+    fun pdfLongClick(file: PDF) {
+//        val index = _pdfLiveData.value?.indexOf(file)
+//        index?.let {
+//        }
     }
 }

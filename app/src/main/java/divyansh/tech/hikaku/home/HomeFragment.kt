@@ -50,10 +50,6 @@ class HomeFragment: Fragment() {
         binding.homeRv.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = controller.adapter
-            setOnLongClickListener {
-                Toast.makeText(requireContext(), "Long Clicked", Toast.LENGTH_SHORT).show()
-                true
-            }
         }
     }
 

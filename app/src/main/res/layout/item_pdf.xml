@@ -3,11 +3,7 @@
     <data>
         <variable
             name="file"
-            type="java.io.File"
-            />
-        <variable
-            name="callback"
-            type="divyansh.tech.hikaku.home.callbacks.HomeCallbacks"
+            type="divyansh.tech.hikaku.home.datamodels.PDF"
             />
         <variable
             name="View"
@@ -17,7 +13,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> callback.onPdfClick(file)}"
         >
 
         <androidx.cardview.widget.CardView
@@ -33,11 +28,13 @@
             >
 
             <TextView
+                android:id="@+id/fileName"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_margin="@dimen/spacing_very_small_8dp"
                 android:marqueeRepeatLimit="marquee_forever"
-                android:text="@{file.name}"
+                android:text="@{file.file.name}"
+                selected="@{file.isSelected}"
                 />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
