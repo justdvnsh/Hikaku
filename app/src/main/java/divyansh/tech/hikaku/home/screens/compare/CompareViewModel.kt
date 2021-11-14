@@ -12,16 +12,4 @@ import javax.inject.Inject
 @HiltViewModel
 class CompareViewModel @Inject constructor(): CommonViewModel() {
 
-    private val _buttonClickLiveData = MutableLiveData<Event<BUTTONS>>()
-    val buttonClickLiveData get() = _buttonClickLiveData
-
-    enum class BUTTONS {
-        FIRST, SECOND
-    }
-
-    fun onClick(button: BUTTONS) {
-        viewModelScope.launch(Dispatchers.IO) {
-            _buttonClickLiveData.postValue(Event(button))
-        }
-    }
 }

@@ -9,11 +9,16 @@
             name="callback"
             type="divyansh.tech.hikaku.home.callbacks.HomeCallbacks"
             />
+        <variable
+            name="View"
+            type="android.view.View"
+            />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> callback.onPdfClick(file)}">
+        android:onClick="@{() -> callback.onPdfClick(file)}"
+        >
 
         <androidx.cardview.widget.CardView
             android:layout_height="wrap_content"

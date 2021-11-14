@@ -22,8 +22,8 @@ class HomeViewModel @Inject constructor(
     val pdfLiveData get() = _pdfLiveData
 
     fun onFabClick() {
-        val action = HomeFragmentDirections.actionHomeFragmentToCompareFragment()
-        changeNavigation(action)
+//        val action = HomeFragmentDirections.actionHomeFragmentToCompareFragment()
+//        changeNavigation(action)
     }
 
     init {
