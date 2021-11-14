@@ -13,12 +13,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.itextpdf.text.pdf.PdfReader
 import com.itextpdf.text.pdf.parser.PdfTextExtractor
 import dagger.hilt.android.AndroidEntryPoint
+import divyansh.tech.hikaku.BuildConfig
 import divyansh.tech.hikaku.common.EventObserver
 import divyansh.tech.hikaku.databinding.FragmentCompareBinding
 import divyansh.tech.hikaku.utils.PermissionChecker
@@ -108,9 +110,11 @@ class CompareFragment: Fragment() {
 
     private fun getDoc(button: CompareViewModel.BUTTONS, data: Intent?) {
         val uri: Uri? = data!!.data
-        val src: String? = uri?.path?.substringAfter(":")
+        val src: String? = uri?.path
         src?.let {
             try {
+                val pdfFile = File()
+                val file = FileProvider.getUriForFile(requireContext(), BuildConfig.APPLICATION_ID + ".provider", pdfFile)
                 var parsedText = ""
                 val reader = PdfReader("file:///$it")
                 val n: Int = reader.numberOfPages
