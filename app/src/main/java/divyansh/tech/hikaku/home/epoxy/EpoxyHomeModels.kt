@@ -1,5 +1,6 @@
 package divyansh.tech.hikaku.home.epoxy
 
+import android.graphics.Color
 import android.view.View
 import android.widget.TextView
 import androidx.databinding.ViewDataBinding
@@ -25,6 +26,8 @@ import java.io.File
 //    }
 //}
 
+private val selectedItemList = ArrayList<PDF>()
+
 @EpoxyModelClass(layout = R.layout.item_pdf)
 abstract class EpoxyPdfModel: EpoxyModelWithHolder<EpoxyPdfModel.Holder>() {
 
@@ -36,16 +39,23 @@ abstract class EpoxyPdfModel: EpoxyModelWithHolder<EpoxyPdfModel.Holder>() {
 
     override fun bind(holder: Holder) {
         super.bind(holder)
-        with(file) {
-            holder.fileName.apply {
-                text = file.name
-                setOnClickListener {
-                    callbacks.onPdfClick(file)
+        holder.fileName.apply {
+            text = file.file.name
+            setOnClickListener {
+                callbacks.onPdfClick(file.file)
+            }
+            setOnLongClickListener {
+                file.isSelected = !file.isSelected
+                if (file.isSelected) {
+                    this.setBackgroundColor(this.resources.getColor(R.color.colorAccent))
+                    selectedItemList.add(file)
                 }
-                setOnLongClickListener {
-                    callbacks.onPdfLongClick(this@with)
-                    true
+                else {
+                    this.setBackgroundColor(this.resources.getColor(R.color.gfgWhite))
+                    selectedItemList.remove(file)
                 }
+                callbacks.onPdfLongClick(selectedItemList)
+                true
             }
         }
     }

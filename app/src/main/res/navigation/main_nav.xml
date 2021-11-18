@@ -17,7 +17,7 @@
         android:name="divyansh.tech.hikaku.home.screens.compare.CompareFragment"
         android:label="CompareFragment" >
         <argument
-            android:name="filePath"
+            android:name="html"
             app:argType="string" />
     </fragment>
 </navigation>

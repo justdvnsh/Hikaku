@@ -53,12 +53,16 @@ class CompareFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        extractData()
         setupObservers()
+        setupWebView()
+    }
+
+    private fun setupWebView() {
+        Timber.e("HTML DATA -> ${args.html}")
+        binding.webView.loadData(args.html, "text/html", "UTF-8")
     }
 
     private fun setupObservers() {
-
         viewModel.navigation.observe(
             viewLifecycleOwner,
             EventObserver {
@@ -66,31 +70,4 @@ class CompareFragment: Fragment() {
             }
         )
     }
-
-    private fun extractData() {
-        try {
-            var parsedText = ""
-            val reader = PdfReader(args.filePath)
-            val n: Int = reader.numberOfPages
-            for (i in 0 until n) {
-                parsedText += PdfTextExtractor.getTextFromPage(reader, i + 1).trim() + "\n"
-            }
-            Timber.e("TEXT FROM DOC-> $parsedText")
-            reader.close()
-        } catch (e: Exception) {
-            println(e)
-        }
-        Toast.makeText(requireContext(), args.filePath, Toast.LENGTH_SHORT).show()
-    }
-
-//    private fun compareResult() {
-//        if (text1 == "") return
-//        if (text2 == "") return
-//        val diff = diff_match_patch()
-//        diff.Diff_Timeout = 1F
-//        diff.Diff_EditCost = 4
-//        val d = diff.diff_main(text1, text2)
-//        Timber.e("PRETTY HTML -> ${diff.diff_prettyHtml(d)}")
-//        binding.webView.loadDataWithBaseURL(null, diff.diff_prettyHtml(d), "text/html","utf-8", null)
-//    }
 }

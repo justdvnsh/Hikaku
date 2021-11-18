@@ -62,11 +62,24 @@ class HomeFragment: Fragment() {
             }
         )
 
+        viewModel.fabLiveData.observe(
+            viewLifecycleOwner,
+            Observer {
+                if (it) binding.fab.visibility = View.VISIBLE
+                else binding.fab.visibility = View.GONE
+            }
+        )
+
         viewModel.navigation.observe(
             viewLifecycleOwner,
             EventObserver {
                 findNavController().navigate(it)
             }
         )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getPDF()
     }
 }
