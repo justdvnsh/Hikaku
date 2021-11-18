@@ -12,7 +12,7 @@ class HomeCallbacks(
     private val viewModel: HomeViewModel
 ) {
     fun onPdfClick(file: File) {
-        val action = HomeFragmentDirections.actionHomeFragmentToCompareFragment(file.absolutePath)
+        val action = HomeFragmentDirections.actionHomeFragmentToReaderFragment(file.absolutePath)
         viewModel.changeNavigation(action)
     }
 

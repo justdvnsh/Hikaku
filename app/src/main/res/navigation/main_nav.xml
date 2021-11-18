@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_homeFragment_to_compareFragment"
             app:destination="@id/compareFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_readerFragment"
+            app:destination="@id/readerFragment" />
     </fragment>
     <fragment
         android:id="@+id/compareFragment"
@@ -18,6 +21,14 @@
         android:label="CompareFragment" >
         <argument
             android:name="html"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/readerFragment"
+        android:name="divyansh.tech.hikaku.home.screens.reader.ReaderFragment"
+        android:label="ReaderFragment" >
+        <argument
+            android:name="path"
             app:argType="string" />
     </fragment>
 </navigation>
