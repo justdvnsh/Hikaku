@@ -15,11 +15,15 @@ import com.daimajia.easing.linear.Linear
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.hikaku.common.EventObserver
 import divyansh.tech.hikaku.databinding.FragmentHomeBinding
+import divyansh.tech.hikaku.home.adapter.HomeAdapter
 import divyansh.tech.hikaku.home.callbacks.HomeCallbacks
+import divyansh.tech.hikaku.home.datamodels.PDF
 import divyansh.tech.hikaku.home.epoxy.EpoxyHomeController
+import timber.log.Timber
+import java.io.File
 
 @AndroidEntryPoint
-class HomeFragment: Fragment() {
+class HomeFragment: Fragment(), HomeAdapter.OnClickListener {
 
     private lateinit var _binding: FragmentHomeBinding
     val binding get() = _binding
@@ -30,6 +34,8 @@ class HomeFragment: Fragment() {
         EpoxyHomeController(HomeCallbacks(viewModel))
     }
 
+    private lateinit var homeAdapter: HomeAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,6 +43,7 @@ class HomeFragment: Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.viewmodel = viewModel
+        homeAdapter = HomeAdapter(this)
         return binding.root
     }
 
@@ -49,7 +56,7 @@ class HomeFragment: Fragment() {
     private fun setupRecyclerView() {
         binding.homeRv.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = controller.adapter
+            adapter = homeAdapter
         }
     }
 
@@ -58,7 +65,9 @@ class HomeFragment: Fragment() {
         viewModel.pdfLiveData.observe(
             viewLifecycleOwner,
             Observer {
-                controller.setData(it)
+                Timber.e("DATA -> $it")
+                homeAdapter.setItems(it)
+                homeAdapter.notifyDataSetChanged()
             }
         )
 
@@ -81,5 +90,13 @@ class HomeFragment: Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getPDF()
+    }
+
+    override fun onClick(item: PDF) {
+        viewModel.changeNavigation(HomeFragmentDirections.actionHomeFragmentToReaderFragment(item.file.absolutePath))
+    }
+
+    override fun onLongClick(list: ArrayList<File>) {
+        viewModel.pdfLongClick(list)
     }
 }

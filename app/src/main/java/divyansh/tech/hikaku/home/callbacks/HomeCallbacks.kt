@@ -16,7 +16,7 @@ class HomeCallbacks(
         viewModel.changeNavigation(action)
     }
 
-    fun onPdfLongClick(arrayList: ArrayList<PDF>) {
-        viewModel.pdfLongClick(arrayList)
+    fun onPdfLongClick(counter: Int) {
+//        viewModel.pdfLongClick(arrayList)
     }
 }

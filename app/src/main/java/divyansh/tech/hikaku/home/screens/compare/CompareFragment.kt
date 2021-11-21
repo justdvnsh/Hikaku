@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.itextpdf.text.pdf.PdfReader
 import com.itextpdf.text.pdf.parser.PdfTextExtractor
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +27,7 @@ import divyansh.tech.hikaku.common.EventObserver
 import divyansh.tech.hikaku.databinding.FragmentCompareBinding
 import divyansh.tech.hikaku.utils.PermissionChecker
 import divyansh.tech.hikaku.utils.diff_match_patch
+import io.github.lucasfsc.html2pdf.Html2Pdf
 import timber.log.Timber
 import java.io.File
 import java.net.URI
@@ -55,11 +57,33 @@ class CompareFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
         setupWebView()
+        setupFabButton()
     }
 
     private fun setupWebView() {
         Timber.e("HTML DATA -> ${args.html}")
-        binding.webView.loadData(args.html, "text/html", "UTF-8")
+        binding.webView.loadDataWithBaseURL(null, args.html, "text/html", "UTF-8", null)
+    }
+
+    private fun setupFabButton() {
+        binding.download.setOnClickListener {
+            val converter = Html2Pdf.Companion.Builder()
+                .context(requireContext())
+                .html(args.html)
+                .file(File("/storage/emulated/0/Download"))
+                .build()
+
+            converter.convertToPdf(object: Html2Pdf.OnCompleteConversion {
+                override fun onFailed() {
+                    Toast.makeText(requireContext(), "Failed to store it in a PDF", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onSuccess() {
+                    Snackbar.make(requireView(), "Successfully created a PDF", Snackbar.LENGTH_SHORT).show()
+                }
+
+            })
+        }
     }
 
     private fun setupObservers() {

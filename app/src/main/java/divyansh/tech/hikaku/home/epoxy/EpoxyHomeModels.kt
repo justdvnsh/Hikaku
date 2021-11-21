@@ -54,7 +54,7 @@ abstract class EpoxyPdfModel: EpoxyModelWithHolder<EpoxyPdfModel.Holder>() {
                     this.setBackgroundColor(this.resources.getColor(R.color.gfgWhite))
                     selectedItemList.remove(file)
                 }
-                callbacks.onPdfLongClick(selectedItemList)
+                callbacks.onPdfLongClick(0)
                 true
             }
         }

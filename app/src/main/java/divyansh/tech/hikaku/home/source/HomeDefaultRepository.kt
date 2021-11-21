@@ -18,9 +18,9 @@ class HomeDefaultRepository @Inject constructor(
         else Result.Success(pdfs)
     }
 
-    override suspend fun comparePDF(file1: PDF, file2: PDF): Result<String> {
-        val text1 = localRepo.getTextFromPDF(file1.file.absolutePath)
-        val text2 = localRepo.getTextFromPDF(file2.file.absolutePath)
+    override suspend fun comparePDF(file1: File, file2: File): Result<String> {
+        val text1 = localRepo.getTextFromPDF(file1.absolutePath)
+        val text2 = localRepo.getTextFromPDF(file2.absolutePath)
         return if (text1 is Result.Success && text2 is Result.Success)
             Result.Success(localRepo.comparePDF(text1.data, text2.data))
         else Result.Error(Exception("SOMETHING HAPPPENED"))

@@ -7,5 +7,5 @@ import java.io.File
 
 interface HomeDataSource {
     suspend fun getAllPDF(): Result<ArrayList<PDF>>
-    suspend fun comparePDF(file1: PDF, file2: PDF): Result<String>
+    suspend fun comparePDF(file1: File, file2: File): Result<String>
 }

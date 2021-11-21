@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(
     private val _compareLiveData = MutableLiveData<String>()
     val compareLiveData get() = _compareLiveData
 
-    private var localCopyOfArrayList = ArrayList<PDF>()
+    private var localCopyOfArrayList = ArrayList<File>()
 
     fun getPDF() = viewModelScope.launch {
         val pdfs = repo.getAllPDF()
@@ -39,13 +39,11 @@ class HomeViewModel @Inject constructor(
         else if (pdfs is Result.Error) Timber.e(pdfs.exception.toString())
     }
 
-    fun pdfLongClick(arrayList: ArrayList<PDF>) {
-        Timber.e("ARRAYLIST -> $arrayList")
-        if (arrayList.size == 2) {
+    fun pdfLongClick(list: ArrayList<File>) {
+        if (list.size == 2) {
             _fabLiveData.value = true
-            localCopyOfArrayList = arrayList
-        } else _fabLiveData.value = false
-        Timber.e("FAB LIVE DATA -> ${fabLiveData.value}")
+            localCopyOfArrayList = list
+        }
     }
 
     fun onFabClick() = viewModelScope.launch(Dispatchers.IO) {
