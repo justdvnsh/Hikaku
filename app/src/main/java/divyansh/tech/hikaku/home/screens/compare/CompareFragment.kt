@@ -1,18 +1,21 @@
 package divyansh.tech.hikaku.home.screens.compare
 
 import android.Manifest
+import android.R.attr.dial
 import android.R.attr.path
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -25,6 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.hikaku.BuildConfig
 import divyansh.tech.hikaku.common.EventObserver
 import divyansh.tech.hikaku.databinding.FragmentCompareBinding
+import divyansh.tech.hikaku.utils.PdfView
 import divyansh.tech.hikaku.utils.PermissionChecker
 import divyansh.tech.hikaku.utils.diff_match_patch
 import io.github.lucasfsc.html2pdf.Html2Pdf
@@ -67,19 +71,31 @@ class CompareFragment: Fragment() {
 
     private fun setupFabButton() {
         binding.download.setOnClickListener {
-            val converter = Html2Pdf.Companion.Builder()
-                .context(requireContext())
-                .html(args.html)
-                .file(File("/storage/emulated/0/Download"))
-                .build()
+            val path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "Stock Transfer"
+            val fileName = "Test.pdf"
+            val dir = File(path);
+            if (!dir.exists())
+                dir.mkdirs()
+            val file = File(dir, fileName)
+            val dialog = AlertDialog.Builder(requireContext())
+                .setTitle("File Exported")
+                .setMessage("Do you want to open the file ?")
 
-            converter.convertToPdf(object: Html2Pdf.OnCompleteConversion {
-                override fun onFailed() {
-                    Toast.makeText(requireContext(), "Failed to store it in a PDF", Toast.LENGTH_SHORT).show()
+            PdfView.createWebPdfJob(requireActivity(), binding.webView, file, fileName, object : PdfView.Callback {
+                override fun onSuccess(path: String) {
+                    dialog.setPositiveButton("Open") {dialog, button ->
+                            viewModel.changeNavigation(
+                                CompareFragmentDirections.actionCompareFragmentToReaderFragment(path)
+                            )
+                        }
+                    dialog.setNegativeButton("Cancel") {dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    dialog.show()
                 }
 
-                override fun onSuccess() {
-                    Snackbar.make(requireView(), "Successfully created a PDF", Snackbar.LENGTH_SHORT).show()
+                override fun onFailure() {
+                    // do something
                 }
 
             })

@@ -22,6 +22,9 @@
         <argument
             android:name="html"
             app:argType="string" />
+        <action
+            android:id="@+id/action_compareFragment_to_readerFragment"
+            app:destination="@id/readerFragment" />
     </fragment>
     <fragment
         android:id="@+id/readerFragment"
